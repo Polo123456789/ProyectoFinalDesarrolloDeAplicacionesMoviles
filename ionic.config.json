@@ -1,0 +1,7 @@
+{
+  "name": "proyecto-final-desarrollo-movil",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
