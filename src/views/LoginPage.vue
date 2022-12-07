@@ -59,12 +59,13 @@ export default defineComponent({
     methods: {
         onSubmit() {
             signInWithEmailAndPassword(auth, this.user, this.password)
-                .then(credentials => {
+                .then(() => {
                     this.$router.push('/home')
                 })
                 .catch(error => {
                     // Informar al usuario que no logro iniciar
-                    alert('datos incorrectos')
+                    alert('Usuario o contraseña incorrectos')
+                    console.log(error.message)
                 })
         }
     }

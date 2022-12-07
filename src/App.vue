@@ -18,11 +18,8 @@ export default defineComponent({
   },
   mounted() {
     onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // Jalar datos del usuario
-      } else {
+      if (!user) {
         this.$router.push('/login')
-        // Limpieza de hacer falta
       }
     });
   }
