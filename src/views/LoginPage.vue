@@ -38,7 +38,7 @@ import {
 } from '@ionic/vue';
 import { defineComponent } from 'vue';
 import { auth } from '@/firebase'
-import {signInWithEmailAndPassword} from 'firebase/auth'
+import { signInWithEmailAndPassword, onAuthStateChanged, Unsubscribe } from 'firebase/auth'
 
 export default defineComponent({
     name: 'HomePage',
@@ -68,7 +68,14 @@ export default defineComponent({
                     console.log(error.message)
                 })
         }
-    }
+    },
+    mounted() {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.$router.push('/home')
+            }
+        });
+  }
 });
 
 

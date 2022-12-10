@@ -78,7 +78,7 @@ import { add, enterOutline, carSportOutline, } from 'ionicons/icons';
 import { defineComponent } from 'vue';
 
 import { auth, db } from '@/firebase'
-import { signOut } from 'firebase/auth'
+import { signOut, onAuthStateChanged, Unsubscribe } from 'firebase/auth'
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 
@@ -123,21 +123,32 @@ export default defineComponent({
       add,
       enterOutline,
       carSportOutline,
-      items: [] as any[]
+      items: [] as any[],
+      unsuscribeAuth: null as null | Unsubscribe,
     }
   },
   mounted() {
-    if (!auth.currentUser) {
-      throw "Error inesperado, intente de nuevo mas tarde";
-    }
-    const travels = collection(db, "travels");
-    const q = query(travels, where("uid", "==", auth.currentUser.uid));
-    getDocs(q).then( snapshot => {
-      snapshot.forEach(doc => {
-        this.items.push(doc.data());
-      })
+    alert("Mounted Home")
+    this.unsuscribeAuth = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        this.$router.push('/login')
+      } else {
+        const travels = collection(db, "travels");
+        const q = query(travels, where("uid", "==", user.uid));
+        getDocs(q).then(snapshot => {
+          snapshot.forEach(doc => {
+            this.items.push(doc.data());
+          })
     })
+      }
+    });
   },
+  unmounted() {
+    alert("Unmounted Home")
+    if (this.unsuscribeAuth) {
+      this.unsuscribeAuth();
+    }
+  }
 });
 
 </script>
