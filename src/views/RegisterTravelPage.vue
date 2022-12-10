@@ -1,119 +1,126 @@
 <template>
-  <ion-content class="ion-justify-content-center">
-    <ion-item>
-      <ion-label>Registro de viaje</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Placa: </ion-label>
-      <ion-input placeholder="Numero de placa" v-model="placa"></ion-input>
-    </ion-item>
+  <ion-page>
 
-    <ion-grid>
-
-      <ion-row class="ion-justify-content-center">
-        <ion-col class="vertical-center">
-          <ion-thumbnail>
-            <img :src="frontal" />
-          </ion-thumbnail>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col>
-          <ion-label>Foto frontal</ion-label>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col>
-          <ion-button shape="round" size="small" @click="getFrontalPhoto">Subir</ion-button>
-        </ion-col>
-      </ion-row>
-
-
-      <ion-row class="ion-justify-content-center">
-        <ion-col class="vertical-center">
-          <ion-thumbnail>
-            <img :src="lateral" />
-          </ion-thumbnail>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col>
-          <ion-label>Foto lateral</ion-label>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col>
-          <ion-button shape="round" size="small" @click="getLateralPhoto">Subir</ion-button>
-        </ion-col>
-      </ion-row>
-
-
-      <ion-row class="ion-justify-content-center">
-        <ion-col class="vertical-center">
-          <ion-thumbnail>
-            <img :src="kilometraje" />
-          </ion-thumbnail>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col>
-          <ion-label>Foto del kilometraje</ion-label>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col>
-          <ion-button shape="round" size="small" @click="getKilometrajePhoto">Subir</ion-button>
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="ion-justify-content-center">
-        <ion-col class="vertical-center">
-          <ion-thumbnail>
-            <img :src="llantas" />
-          </ion-thumbnail>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col>
-          <ion-label>Foto de las llantas</ion-label>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col>
-          <ion-button shape="round" size="small" @click="getLlantasPhoto">Subir</ion-button>
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="ion-justify-content-center">
-        <ion-col class="vertical-center">
-          <ion-thumbnail>
-            <img :src="desperfectos" />
-          </ion-thumbnail>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col>
-          <ion-label>Foto de desperfectos</ion-label>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col>
-          <ion-button shape="round" size="small" @click="getDesperfectosPhoto">Subir</ion-button>
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="ion-justify-content-center">
-        <ion-col>
-          <ion-button size="default" @click="registerTravel">Registrar viaje</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-  </ion-content>
+    <ion-content class="ion-justify-content-center">
+      <ion-item>
+        <ion-label>Registro de viaje</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Placa: </ion-label>
+        <ion-input placeholder="Numero de placa" v-model="placa"></ion-input>
+      </ion-item>
+  
+      <ion-grid>
+  
+        <ion-row class="ion-justify-content-center">
+          <ion-col class="vertical-center">
+            <ion-thumbnail>
+              <img :src="frontal" />
+            </ion-thumbnail>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>
+            <ion-label>Foto frontal</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>
+            <ion-button shape="round" size="small" @click="getFrontalPhoto">Subir</ion-button>
+          </ion-col>
+        </ion-row>
+  
+  
+        <ion-row class="ion-justify-content-center">
+          <ion-col class="vertical-center">
+            <ion-thumbnail>
+              <img :src="lateral" />
+            </ion-thumbnail>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>
+            <ion-label>Foto lateral</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>
+            <ion-button shape="round" size="small" @click="getLateralPhoto">Subir</ion-button>
+          </ion-col>
+        </ion-row>
+  
+  
+        <ion-row class="ion-justify-content-center">
+          <ion-col class="vertical-center">
+            <ion-thumbnail>
+              <img :src="kilometraje" />
+            </ion-thumbnail>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>
+            <ion-label>Foto del kilometraje</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>
+            <ion-button shape="round" size="small" @click="getKilometrajePhoto">Subir</ion-button>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row class="ion-justify-content-center">
+          <ion-col class="vertical-center">
+            <ion-thumbnail>
+              <img :src="llantas" />
+            </ion-thumbnail>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>
+            <ion-label>Foto de las llantas</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>
+            <ion-button shape="round" size="small" @click="getLlantasPhoto">Subir</ion-button>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row class="ion-justify-content-center">
+          <ion-col class="vertical-center">
+            <ion-thumbnail>
+              <img :src="desperfectos" />
+            </ion-thumbnail>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>
+            <ion-label>Foto de desperfectos</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>
+            <ion-button shape="round" size="small" @click="getDesperfectosPhoto">Subir</ion-button>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row class="ion-justify-content-center">
+          <ion-col>
+            <ion-button size="default" @click="registerTravel">Registrar viaje</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>
+            <ion-button size="default" :router-link="{ path: '/home' }">Regresar al inicio</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+  </ion-page>
 </template>
 
 <script lang="ts">
-import { IonInput, IonItem, IonLabel, IonCol, IonGrid, IonRow, IonThumbnail, IonContent, IonButton } from '@ionic/vue';
+import { IonPage, IonInput, IonItem, IonLabel, IonCol, IonGrid, IonRow, IonThumbnail, IonContent, IonButton } from '@ionic/vue';
 import { defineComponent } from 'vue';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
@@ -154,7 +161,7 @@ const uploadPictureAndGetUrl = async (type: string): Promise<string>  => {
 }
 
 export default defineComponent({
-  components: { IonInput, IonItem, IonLabel, IonCol, IonGrid, IonRow, IonThumbnail, IonContent, IonButton },
+  components: { IonPage, IonInput, IonItem, IonLabel, IonCol, IonGrid, IonRow, IonThumbnail, IonContent, IonButton },
   data() {
     return {
       placa: "",
@@ -199,13 +206,14 @@ export default defineComponent({
         kilometraje: this.kilometraje,
         llantas: this.llantas,
         desperfectos: this.desperfectos,
-        uid: (auth.currentUser as User).uid
+        uid: (auth.currentUser as User).uid,
+        fecha: (new Date()).toLocaleDateString(),
       }
 
       const travels = collection(db, "travels");
       const docRef = await addDoc(travels, data);
       console.log(`Guardado el viaje con el id: ${docRef.id}`);
-      this.$router.push('/home');
+      this.$router.push({path: '/home'});
     }
   },
 });
