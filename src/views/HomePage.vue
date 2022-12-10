@@ -74,11 +74,14 @@ import {
   IonToolbar,
 } from '@ionic/vue';
 
-
 import { add, enterOutline, carSportOutline, } from 'ionicons/icons';
 import { defineComponent } from 'vue';
-import { auth } from '@/firebase'
+
+import { auth, db } from '@/firebase'
 import { signOut } from 'firebase/auth'
+import { collection, query, where, getDocs } from "firebase/firestore";
+
+
 import TravelDetailsModalVue from '@/components/TravelDetailsModal.vue';
 
 export default defineComponent({
@@ -120,41 +123,20 @@ export default defineComponent({
       add,
       enterOutline,
       carSportOutline,
-      items: [
-        {
-          uid: "",
-          placa: "P022REW",
-          marca: "Honda HRV",
-          fecha: "December 12, 2022",
-          desperfectos: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-          frontal: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-          kilometraje: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-          lateral: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-          llantas: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-        },
-        {
-          uid: "",
-          placa: "P022REW",
-          marca: "Honda HRV",
-          fecha: "December 12, 2022",
-          desperfectos: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-          frontal: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-          kilometraje: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-          lateral: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-          llantas: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-        },
-        {
-          uid: "",
-          placa: "P022REW",
-          marca: "Honda HRV",
-          fecha: "December 12, 2022",
-          desperfectos: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-          frontal: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-          kilometraje: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-          lateral: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-          llantas: "https://ionicframework.com/docs/img/demos/thumbnail.svg",
-        },]
+      items: [] as any[]
     }
+  },
+  mounted() {
+    if (!auth.currentUser) {
+      throw "Error inesperado, intente de nuevo mas tarde";
+    }
+    const travels = collection(db, "travels");
+    const q = query(travels, where("uid", "==", auth.currentUser.uid));
+    getDocs(q).then( snapshot => {
+      snapshot.forEach(doc => {
+        this.items.push(doc.data());
+      })
+    })
   },
 });
 
