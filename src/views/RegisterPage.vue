@@ -35,7 +35,15 @@ import {
 } from '@ionic/vue';
 import { defineComponent } from 'vue';
 import { auth } from '@/firebase'
-import {createUserWithEmailAndPassword} from 'firebase/auth'
+import {createUserWithEmailAndPassword, Unsubscribe, onAuthStateChanged} from 'firebase/auth'
+
+const getInitialState = () => {
+    return {
+        user: "",
+        password: "",
+        unsuscribeAuth: null as null | Unsubscribe,
+    }
+}
 
 export default defineComponent({
     name: 'HomePage',
@@ -48,10 +56,7 @@ export default defineComponent({
         IonButton,
     },
     data() {
-        return {
-            user: "",
-            password: ""
-        }
+        return getInitialState();
     },
     methods: {
         onSubmit() {
@@ -63,6 +68,19 @@ export default defineComponent({
                     alert(error.message)
                 })
         }
+    },
+    ionViewDidEnter() {
+        this.unsuscribeAuth = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.$router.push('/home');
+            }
+        })
+    },
+    ionViewWillLeave() {
+        if (this.unsuscribeAuth) {
+            this.unsuscribeAuth();
+        }
+        Object.assign(this.$data, getInitialState());
     }
 });
 

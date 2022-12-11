@@ -7,8 +7,6 @@
 <script lang="ts">
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
 import { defineComponent } from 'vue';
-import { auth } from '@/firebase'
-import { onAuthStateChanged } from 'firebase/auth'
 
 export default defineComponent({
   name: 'App',

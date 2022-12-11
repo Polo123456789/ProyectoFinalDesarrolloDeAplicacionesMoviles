@@ -40,6 +40,14 @@ import { defineComponent } from 'vue';
 import { auth } from '@/firebase'
 import { signInWithEmailAndPassword, onAuthStateChanged, Unsubscribe } from 'firebase/auth'
 
+const getInitialState = () => {
+    return {
+        user: "",
+        password: "",
+        unsuscribeAuth: null as null | Unsubscribe,
+    }
+}
+
 export default defineComponent({
     name: 'HomePage',
     components: {
@@ -51,17 +59,11 @@ export default defineComponent({
         IonButton,
     },
     data() {
-        return {
-            user: "",
-            password: ""
-        }
+        return getInitialState();
     },
     methods: {
         onSubmit() {
             signInWithEmailAndPassword(auth, this.user, this.password)
-                .then(() => {
-                    this.$router.push('/home')
-                })
                 .catch(error => {
                     // Informar al usuario que no logro iniciar
                     alert('Usuario o contraseña incorrectos')
@@ -69,13 +71,19 @@ export default defineComponent({
                 })
         }
     },
-    mounted() {
-        onAuthStateChanged(auth, (user) => {
+    ionViewDidEnter() {
+        this.unsuscribeAuth = onAuthStateChanged(auth, (user) => {
             if (user) {
                 this.$router.push('/home')
             }
         });
-  }
+    },
+    ionViewWillLeave() {
+        if (this.unsuscribeAuth) {
+            this.unsuscribeAuth();
+        }
+        Object.assign(this.$data, getInitialState());
+    }
 });
 
 

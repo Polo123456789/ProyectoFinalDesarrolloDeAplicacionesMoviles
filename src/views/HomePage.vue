@@ -84,6 +84,16 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 
 import TravelDetailsModalVue from '@/components/TravelDetailsModal.vue';
 
+const getInitialState = () => {
+    return {
+      add,
+      enterOutline,
+      carSportOutline,
+      items: [] as any[],
+      unsuscribeAuth: null as null | Unsubscribe,
+    }
+}
+
 export default defineComponent({
   name: 'HomePage',
   components: {
@@ -119,16 +129,9 @@ export default defineComponent({
     }
   },
   data() {
-    return {
-      add,
-      enterOutline,
-      carSportOutline,
-      items: [] as any[],
-      unsuscribeAuth: null as null | Unsubscribe,
-    }
+    return getInitialState();
   },
-  mounted() {
-    alert("Mounted Home")
+  ionViewDidEnter() {
     this.unsuscribeAuth = onAuthStateChanged(auth, (user) => {
       if (!user) {
         this.$router.push('/login')
@@ -143,11 +146,11 @@ export default defineComponent({
       }
     });
   },
-  unmounted() {
-    alert("Unmounted Home")
+  ionViewWillLeave() {
     if (this.unsuscribeAuth) {
       this.unsuscribeAuth();
     }
+    Object.assign(this.$data, getInitialState());
   }
 });
 

@@ -125,7 +125,7 @@ import { defineComponent } from 'vue';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 import { auth, storage, db } from '@/firebase'
-import { User } from 'firebase/auth'
+import { onAuthStateChanged, Unsubscribe, User } from 'firebase/auth'
 import {ref, uploadString, getDownloadURL} from 'firebase/storage';
 import { collection, addDoc } from 'firebase/firestore'
 
@@ -160,17 +160,22 @@ const uploadPictureAndGetUrl = async (type: string): Promise<string>  => {
   return url;
 }
 
+const getInitialState = () => {
+  return {
+    placa: "",
+    frontal: placeholderUrl,
+    lateral: placeholderUrl,
+    kilometraje: placeholderUrl,
+    llantas: placeholderUrl,
+    desperfectos: placeholderUrl,
+    unsuscribeAuth: null as null | Unsubscribe,
+  }
+}
+
 export default defineComponent({
   components: { IonPage, IonInput, IonItem, IonLabel, IonCol, IonGrid, IonRow, IonThumbnail, IonContent, IonButton },
   data() {
-    return {
-      placa: "",
-      frontal: placeholderUrl,
-      lateral: placeholderUrl,
-      kilometraje: placeholderUrl,
-      llantas: placeholderUrl,
-      desperfectos: placeholderUrl,
-    }
+    return getInitialState();
   },
   methods: {
     async getFrontalPhoto() {
@@ -199,6 +204,22 @@ export default defineComponent({
         return;
       }
 
+      if (this.frontal == placeholderUrl) {
+        alert("La foto frontal es obligatoria");
+      }
+
+      if (this.lateral == placeholderUrl) {
+        alert("La foto del lateral es obligatoria");
+      }
+
+      if (this.kilometraje == placeholderUrl) {
+        alert("La foto del kilometraje es obligatoria");
+      }
+
+      if (this.llantas == placeholderUrl) {
+        alert("La foto de las llantas es obligatoria");
+      }
+
       const data = {
         placa: this.placa,
         frontal: this.frontal,
@@ -216,6 +237,19 @@ export default defineComponent({
       this.$router.push({path: '/home'});
     }
   },
+  ionViewDidEnter() {
+    this.unsuscribeAuth = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        this.$router.push('/login');
+      }
+    });
+  },
+  ionViewWillLeave() {
+    if (this.unsuscribeAuth) {
+      this.unsuscribeAuth();
+    }
+    Object.assign(this.$data, getInitialState());
+  }
 });
 </script>
 
