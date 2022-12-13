@@ -18,7 +18,7 @@
                     style="padding-left:10px !important; font-family:'Quicksand, sans-serif;'"></ion-input>
 
                 <ion-button fill="solid" class="primary-ion-button login-ion-button" @click="onSubmit">Registrarse</ion-button>
-                <ion-button fill="outline" class="secondary-ion-button signup-ion-button" @click="$router.push('/login')">Iniciar Sesion</ion-button>
+                <ion-button class="secondary-ion-button" @click="$router.push('/login')">Iniciar Sesion</ion-button>
             </div>
         </div>
     </ion-page>
@@ -119,7 +119,7 @@ template {
     width: 150px;
     margin-bottom: 48px;
     justify-self: center;
-    display: none;
+    display: block;
 }
 
 .form {
@@ -174,6 +174,7 @@ template {
 
 ion-button {
     --border-radius: 8px;
+    --background: #b7f399;
 }
 
 .secondary-ion-button {
@@ -194,15 +195,4 @@ ion-button {
     margin-bottom: 30px;
 }
 
-@media (max-width: 600px) {
-    .logo {
-        display: block;
-    }
-
-    .secondary-ion-button {
-        position: absolute;
-        bottom: 20px;
-        width: inherit;
-    }
-}
 </style>

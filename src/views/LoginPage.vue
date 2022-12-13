@@ -4,7 +4,7 @@
         </ion-header>
         <div class="login">
             <div class="form-container">
-                <ion-img src="/assets/icon/logo.jpeg" alt="logo" class=""></ion-img>
+                <ion-img src="/assets/icon/logo.jpeg" alt="logo" class="logo"></ion-img>
 
                 <ion-label for="email" class="ion-label"
                     style="padding-left:10px !important; font-family:'Quicksand, sans-serif;'">Email</ion-label>
@@ -21,7 +21,7 @@
                 <ion-button fill="solid" class="primary-ion-button login-ion-button" @click="onSubmit">Iniciar Sesion</ion-button>
 
 
-                <ion-button fill="outline" class="secondary-ion-button signup-ion-button" @click="$router.push('/register')">Registrarse</ion-button>
+                <ion-button class="secondary-ion-button" @click="$router.push('/register')">Registrarse</ion-button>
             </div>
         </div>
     </ion-page>
@@ -123,7 +123,7 @@ template {
     width: 150px;
     margin-bottom: 48px;
     justify-self: center;
-    display: none;
+    display: block;
 }
 
 .form {
@@ -185,7 +185,6 @@ ion-button {
     background: var(--white);
     border-radius: 8px;
     border-style: 1px solid;
-    border-color: var(--green);
     color: var(--green);
     width: 100%;
     cursor: pointer;
@@ -197,17 +196,5 @@ ion-button {
 .login-ion-button {
     margin-top: 14px;
     margin-bottom: 30px;
-}
-
-@media (max-width: 600px) {
-    .logo {
-        display: block;
-    }
-
-    .secondary-ion-button {
-        position: absolute;
-        bottom: 20px;
-        width: inherit;
-    }
 }
 </style>
