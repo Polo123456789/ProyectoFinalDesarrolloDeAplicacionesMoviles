@@ -4,7 +4,7 @@
         </ion-header>
         <div class="login">
             <div class="form-container">
-                <ion-img src="/assets/icon/logo.png" alt="logo" class="logo"></ion-img>
+                <ion-img src="/assets/icon/logo.jpeg" alt="logo" class="logo"></ion-img>
                 <ion-label for="email" class="ion-label"
                     style="padding-left:10px !important; font-family:'Quicksand, sans-serif;'">Email</ion-label>
                 <ion-input v-model="user" type="email" id="email" placeholder="admin@example.com"
