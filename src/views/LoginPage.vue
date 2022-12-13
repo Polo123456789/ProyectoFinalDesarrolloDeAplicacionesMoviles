@@ -178,6 +178,7 @@ template {
 
 ion-button {
     --border-radius: 8px;
+    --background: #b7f399;
 }
 
 .secondary-ion-button {

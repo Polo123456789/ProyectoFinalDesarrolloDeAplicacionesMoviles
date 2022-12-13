@@ -157,6 +157,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+ion-button {
+    --background: #b7f399;
+}
+
 ion-thumbnail {
   --size: 160px;
   --border-radius: 14px;
